@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { ConvexClientProvider } from '@/components/ConvexClientProvider';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { Toaster } from 'sonner';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -38,11 +37,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className={`${inter.variable} ${playfair.variable} min-h-screen bg-white font-sans`}>
+      <body className={`${inter.variable} ${playfair.variable} min-h-screen bg-background font-sans antialiased`}>
         <ConvexClientProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          {children}
+          <Toaster position="top-right" richColors />
         </ConvexClientProvider>
       </body>
     </html>

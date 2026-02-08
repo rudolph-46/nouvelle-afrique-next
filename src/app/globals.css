@@ -3,49 +3,258 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Nouvelle Afrique Color System */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    /* NA Red - Primary Accent */
+    --primary: 0 100% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Editorial Colors */
+    --editorial-black: 0 0% 0%;
+    --body-black: 0 0% 20%;
+    --dark-grey: 0 0% 40%;
+    --light-grey: 0 0% 80%;
+    --divider: 0 0% 85%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 0 100% 40%;
+
+    --radius: 0rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 100% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 0 100% 40%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 100% 50%;
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    @apply antialiased;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 }
 
 @layer components {
-  .article-content p {
-    @apply text-gray-700 leading-relaxed mb-4 text-lg;
+  /* Masthead Style */
+  .masthead {
+    @apply font-serif font-bold tracking-wide text-primary;
   }
-  
+
+  /* Navigation Link Style */
+  .nav-link {
+    @apply font-serif uppercase tracking-widest text-sm transition-colors duration-150 relative;
+    color: hsl(var(--body-black));
+  }
+
+  .nav-link:hover {
+    @apply text-primary;
+  }
+
+  .nav-link.active {
+    @apply text-primary;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    @apply absolute bottom-[-4px] left-0 right-0 h-0.5 bg-primary;
+  }
+
+  /* Section Header */
+  .section-header {
+    @apply font-serif font-semibold uppercase tracking-wide flex items-center gap-3;
+    color: hsl(var(--editorial-black));
+  }
+
+  .section-header::before {
+    content: '';
+    @apply w-1 bg-primary;
+    height: 1.25em;
+  }
+
+  /* Article Title */
+  .article-title {
+    @apply font-serif font-semibold leading-tight transition-colors duration-150;
+    color: hsl(var(--editorial-black));
+  }
+
+  .article-title:hover {
+    @apply text-primary;
+  }
+
+  /* Metadata Style */
+  .metadata {
+    @apply font-sans text-xs uppercase tracking-wide;
+    color: hsl(var(--dark-grey));
+  }
+
+  /* Category Label */
+  .category-label {
+    @apply font-sans text-xs font-semibold uppercase tracking-widest text-primary;
+  }
+
+  /* Ad Container */
+  .ad-container {
+    @apply border border-border bg-secondary relative;
+  }
+
+  /* Divider */
+  .content-divider {
+    @apply h-px;
+    background-color: hsl(var(--divider));
+  }
+}
+
+@layer utilities {
+  .text-editorial-black {
+    color: hsl(var(--editorial-black));
+  }
+
+  .text-body-black {
+    color: hsl(var(--body-black));
+  }
+
+  .text-dark-grey {
+    color: hsl(var(--dark-grey));
+  }
+
+  .text-editorial-grey {
+    color: hsl(var(--dark-grey));
+  }
+
+  .text-editorial-body {
+    color: hsl(var(--body-black));
+  }
+
+  .bg-light-grey {
+    background-color: hsl(var(--light-grey));
+  }
+
+  .border-editorial-divider {
+    border-color: hsl(var(--divider));
+  }
+
+  /* Page transition wrapper */
+  .page-transition {
+    animation: pageEnter 0.4s ease-out forwards;
+  }
+
+  @keyframes pageEnter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Article card hover effect */
+  .article-card-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .article-card-transition:hover {
+    @apply shadow-card-hover;
+    transform: translateY(-2px);
+  }
+
+  /* Article content styles */
   .article-content h2 {
-    @apply text-2xl font-bold text-gray-900 mt-8 mb-4;
+    @apply font-serif text-xl md:text-2xl font-semibold mt-8 mb-4;
+    color: hsl(var(--editorial-black));
   }
-  
-  .article-content h3 {
-    @apply text-xl font-semibold text-gray-800 mt-6 mb-3;
+
+  .article-content p {
+    @apply leading-relaxed mb-6;
+    color: hsl(var(--body-black));
   }
-  
+
   .article-content figure {
     @apply my-8;
   }
-  
+
   .article-content figure img {
-    @apply rounded-lg w-full;
+    @apply w-full h-auto rounded;
   }
-  
-  .article-content figcaption {
-    @apply text-sm text-gray-500 mt-2 text-center italic;
+
+  .article-content figure figcaption {
+    @apply text-sm italic mt-2;
+    color: hsl(var(--dark-grey));
   }
-  
-  .article-content blockquote {
-    @apply border-l-4 border-accent pl-4 italic text-gray-600 my-6;
-  }
-  
-  .article-content ul, .article-content ol {
-    @apply my-4 pl-6;
-  }
-  
-  .article-content li {
-    @apply mb-2 text-gray-700;
-  }
-  
-  .article-content a {
-    @apply text-accent hover:underline;
+
+  .article-content .article-source {
+    @apply mt-8 pt-4 border-t text-sm italic;
+    border-color: hsl(var(--divider));
+    color: hsl(var(--dark-grey));
   }
 }
