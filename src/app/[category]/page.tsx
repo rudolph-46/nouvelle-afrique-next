@@ -112,18 +112,17 @@ export default async function CategoryPage({ params }: Props) {
 function ArticleCard({ article }: { article: Article }) {
   const imageUrl = article.heroImage || article.images?.[0]?.url;
   const publishedAt = article.publishedAt || article._creationTime;
+  const placeholderImage = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=500&fit=crop";
   
   return (
     <Link href={`/article/${article.slug}`} className="group block">
       <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-gray-100 mb-4">
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt={article.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        )}
+        <Image
+          src={imageUrl || placeholderImage}
+          alt={article.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+        />
       </div>
       <h2 className="text-xl font-semibold group-hover:text-accent transition line-clamp-2 mb-2">
         {article.title}

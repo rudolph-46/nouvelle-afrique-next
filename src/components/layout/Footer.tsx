@@ -26,7 +26,6 @@ const footerLinks = {
       { label: "CGU", path: "/cgu" },
       { label: "Politique de confidentialité", path: "/confidentialite" },
       { label: "Cookies", path: "/cookies" },
-      { label: "Publicité", path: "/publicite" },
     ],
   },
   partenaires: {

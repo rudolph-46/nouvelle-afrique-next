@@ -29,15 +29,13 @@ export default async function HomePage() {
         <section className="mb-12">
           <Link href={`/article/${featured.slug}`} className="group block">
             <div className="relative aspect-[21/9] overflow-hidden rounded-xl bg-gray-100">
-              {(featured.heroImage || featured.images?.[0]?.url) && (
-                <Image
-                  src={featured.heroImage || featured.images![0].url}
-                  alt={featured.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  priority
-                />
-              )}
+              <Image
+                src={featured.heroImage || featured.images?.[0]?.url || PLACEHOLDER_IMAGE}
+                alt={featured.title}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                priority
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
                 <span className="inline-block px-3 py-1 bg-accent text-white text-xs font-semibold rounded mb-3">
@@ -84,20 +82,20 @@ export default async function HomePage() {
   );
 }
 
+const PLACEHOLDER_IMAGE = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=500&fit=crop";
+
 function ArticleCard({ article }: { article: Article }) {
-  const imageUrl = article.heroImage || article.images?.[0]?.url;
+  const imageUrl = article.heroImage || article.images?.[0]?.url || PLACEHOLDER_IMAGE;
   
   return (
     <Link href={`/article/${article.slug}`} className="group block">
       <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-gray-100 mb-3">
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt={article.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        )}
+        <Image
+          src={imageUrl}
+          alt={article.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+        />
       </div>
       <span className="text-xs font-semibold text-accent uppercase tracking-wide">
         {article.category || 'Actualités'}
@@ -116,19 +114,17 @@ function ArticleCard({ article }: { article: Article }) {
 }
 
 function ArticleCardSmall({ article }: { article: Article }) {
-  const imageUrl = article.heroImage || article.images?.[0]?.url;
+  const imageUrl = article.heroImage || article.images?.[0]?.url || PLACEHOLDER_IMAGE;
   
   return (
     <Link href={`/article/${article.slug}`} className="group flex gap-3">
       <div className="relative w-24 h-24 flex-shrink-0 overflow-hidden rounded bg-gray-100">
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt={article.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        )}
+        <Image
+          src={imageUrl}
+          alt={article.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
+        />
       </div>
       <div className="flex-1 min-w-0">
         <span className="text-xs font-semibold text-accent uppercase">
